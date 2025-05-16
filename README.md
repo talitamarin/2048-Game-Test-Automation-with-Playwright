@@ -20,21 +20,22 @@ cd 2048-Game-Test-Automation-with-Playwright
 npm install
 
 ```bash
-
 npx playwright test
 
 ```bash
-
 npx playwright show-report
 
+
+
 ✅ What is tested?
+
 Navigation to the 2048 game
 
 Menu options and text validation
 
 Dialog box behavior when starting a new game
 
-Game movement using arrow keys
+Game movement using the arrow keys
 
 Game grid and tile checks (in progress)
 
