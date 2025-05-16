@@ -12,17 +12,17 @@ This project uses [Playwright](https://playwright.dev/) to automate end-to-end t
 
 1. **Clone the repository:**
 
-```bash
+
 git clone https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwright.git
 cd 2048-Game-Test-Automation-with-Playwright
 
-```bash
+
 npm install
 
-```bash
+
 npx playwright test
 
-```bash
+
 npx playwright show-report
 
 
