@@ -1,7 +1,5 @@
 # 2048-Game-Test-Automation-with-Playwright
 
-# 2048 Game - Test Automation with Playwright
-
 This project uses [Playwright](https://playwright.dev/) to automate end-to-end tests for the popular [2048 game](https://play2048.co/).
 
 ## 🧪 Technologies
