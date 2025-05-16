@@ -14,6 +14,7 @@ This project uses [Playwright](https://playwright.dev/) to automate end-to-end t
 
 ```bash
 git clone https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwright.git
+
 cd 2048-Game-Test-Automation-with-Playwright
 ```
 
@@ -21,37 +22,33 @@ cd 2048-Game-Test-Automation-with-Playwright
 
 ## Install dependencies:
 
-bash
+```bash
 npm install
 ```
 
 3. **Run the tests:**
 
 ```bash
-
 npx playwright test
 ```
 
 4. **View the report:**
 
 ```bash
-
 npx playwright show-report
+```
 
 ✅ What is tested?
+
 Navigation to the 2048 game
-
 Menu options and text validation
-
 Dialog box behavior when starting a new game
-
-Game movement using arrow keys
-
+Game movement using arthe row keys
 Game grid and tile checks (in progress)
 
 📁 Project Structure
 
-bash
+```bash
 Copiar
 Editar
 tests/
