@@ -38,7 +38,7 @@ npx playwright test
 npx playwright show-report
 ```
 
-✅ What is tested?
+## ✅ What is tested?
 
 Navigation to the 2048 game
 Menu options and text validation
@@ -46,7 +46,7 @@ Dialog box behavior when starting a new game
 Game movement using arthe row keys
 Game grid and tile checks (in progress)
 
-📁 Project Structure
+## 📁 Project Structure
 
 ```bash
 Copiar
