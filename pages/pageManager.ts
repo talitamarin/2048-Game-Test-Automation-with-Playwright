@@ -1,25 +1,25 @@
 import { Page } from "playwright"
 import { basePage } from "./basePage"
-import { MainTestPage } from "./mainTestPage"
+import { TutorialPage } from "./tutorialPage"
 
 export class PageManager {
 
     private page: Page;
     private basePage: basePage;
-    private mainTestPage: MainTestPage;
+    private tutorialPage: TutorialPage;
 
     constructor(page: Page) {
         this.page = page;
         this.basePage = new basePage(page);
-        this.mainTestPage = new MainTestPage(page);
+        this.tutorialPage = new TutorialPage(page);
     }
 
     onBasePage(): basePage {
         return this.basePage;
     }
 
-    onMainTestPage(): MainTestPage {
-        return this.mainTestPage;
+    onTutorialPage(): TutorialPage {
+        return this.tutorialPage;
     }
 }
 

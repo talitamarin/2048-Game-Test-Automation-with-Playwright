@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { createWorker } from 'tesseract.js';
 
 
-export class MainTestPage {
+export class TutorialPage {
     
     readonly page: Page;
     readonly svg: Locator;
@@ -62,6 +62,4 @@ export class MainTestPage {
   async getTutorialText() {
     return this.page.locator('span[class="mb-1 last:mb-0"]').first();
   }
-
-
 } 

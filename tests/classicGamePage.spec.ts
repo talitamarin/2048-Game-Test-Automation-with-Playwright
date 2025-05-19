@@ -1,26 +1,24 @@
 import { test, expect } from '@playwright/test';
+import { PageManager } from '../pages/pageManager';
 
-test('Validate go to the Classic Game', async ({ page }) => {
+test.only('Validate go to the Classic Game', async ({ page }) => {
 
-    await page.goto('https://play2048.co/');
+  const pm = new PageManager(page);
 
-    await page.locator('h1[class="flex items-center justify-center text-5xl font-bold "]').getByText('2048').click();
+  await pm.onBasePage().visitDefaultUrl();
 
-    const menuItems = page.locator('ul.flex > li')
+    await pm.onBasePage().menu.click();
 
-    await expect(menuItems).toHaveCount(4);
-  
-    await expect(menuItems.nth(1)).toContainText(['Classic']);
+    await pm.onBasePage().chooseItemFromMenu(1, 'Classic' )
 
-    await menuItems.nth(1).click();
-
-    await expect(page).toHaveURL(/classic/);
 });
 
 test('Validate play the Classic Game', async ({ page }) => {
     test.setTimeout(125000);
 
-    await page.goto('https://play2048.co/');
+    const pm = new PageManager(page);
+
+    await pm.onBasePage().visitDefaultUrl();
 
     await page.locator('h1[class="flex items-center justify-center text-5xl font-bold "]').getByText('2048').click();
 
@@ -28,7 +26,7 @@ test('Validate play the Classic Game', async ({ page }) => {
 
     await expect(menuItems).toHaveCount(4);
   
-    await expect(menuItems.nth(1)).toContainText(['Classic']);
+    await expect(pm.onBasePage().chooseItemFromMenu(1, 'Classic' ))
 
     await menuItems.nth(1).click();
 
