@@ -1,0 +1,31 @@
+{
+  "name": "2048",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "This project uses [Playwright](https://playwright.dev/) to automate end-to-end tests for the popular [2048 game](https://play2048.co/).",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.18"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0",
+    "tesseract.js": "^4.1.1",
+    "undici-types": "^6.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwright.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwright/issues"
+  },
+  "homepage": "https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwright#readme"
+}
