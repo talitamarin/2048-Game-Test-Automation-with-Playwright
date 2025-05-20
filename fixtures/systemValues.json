@@ -1,0 +1,13 @@
+{ 
+    "TutorialMessages": {
+        "MoveTheArrowKeys": "Use the arrow keys to move the tiles.",
+        "CombineTheBlocks": "The tiles all moved in the same direction and a new one appeared.",
+        "JoinTheNumbers": "Tiles with the same number join when they touch.",
+        "YouDoIt": "You’re getting the hang of it!",
+        "UseUndo": "If you make mistakes, you can use undo. Try it out!",
+        "UseSwap": "Undo isn’t the only powerup you can use. Try “Swap Two Tiles”!",
+        "FirstSwap": "Choose the first tile",
+        "EndTutorial": "You’re Ready"
+    }
+    
+}

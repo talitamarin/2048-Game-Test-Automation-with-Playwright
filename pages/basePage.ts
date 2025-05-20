@@ -1,6 +1,6 @@
 import { expect, Locator } from "@playwright/test";
 import { Page } from "playwright";
-
+import { MenuType } from "../utils/types";
 
 export class basePage {
     
@@ -32,13 +32,20 @@ export class basePage {
     await this.page.goto('https://play2048.co/');
   }
 
-  async chooseItemFromMenu(index: number, item: string ) {
+  async chooseItemFromMenu(index: number, MenuItem: MenuType ) {
+    await this.menu.click();
+    
+    const menuItem = this.menuItems.nth(index);
+  
+    await menuItem.click();
 
-    await this.menuItems.click();
+    await expect(menuItem).toContainText(MenuItem);
+} 
 
-    await expect(this.menuItems.nth(index)).toContainText(item);
+async validadeCurrentUrl(page: Page, url) {
 
-    await this.menuItems.nth(index).click();
+  await page.waitForURL(url)
+  await expect.soft(page.url()).toContain(url)
 } 
 
 }
