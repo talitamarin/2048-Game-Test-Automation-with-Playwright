@@ -49,8 +49,6 @@ Game grid and tile checks (in progress)
 ## 📁 Project Structure
 
 ```bash
-Copiar
-Editar
 tests/
   ├── menuTest.spec.ts        # UI/menu tests
   └── gamePlay.spec.ts        # Arrow key gameplay tests
