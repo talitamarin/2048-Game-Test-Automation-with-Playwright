@@ -18,7 +18,6 @@ git clone https://github.com/talitamarin/2048-Game-Test-Automation-with-Playwrig
 cd 2048-Game-Test-Automation-with-Playwright
 ```
 
-2. **Install dependencies:**
 
 ## Install dependencies:
 
