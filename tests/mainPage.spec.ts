@@ -1,6 +1,7 @@
 import { test, expect, Locator } from '@playwright/test';
 import { PageManager } from '../pages/pageManager';
-
+import data from '../fixtures/systemValues.json';
+import urls from '../fixtures/systemUrls.json';
 
 test('Visit the web site 2048', async ({ page }) => {
 
@@ -18,20 +19,16 @@ test('Validate all the items on dropdown menu is visible', async ({ page }) => {
 
   await pm.onBasePage().visitDefaultUrl();
 
-  const menu = page.locator('button[class="hover:bg-beige relative z-30 flex items-center gap-2 rounded-xl p-1 px-2 transition-colors duration-75 md:-mx-2 "]')
+  await expect(pm.onBasePage().menu).toBeAttached();
 
-  await expect(menu).toBeAttached();
+  await pm.onBasePage().menu.click();
 
-  await page.locator('h1[class="flex items-center justify-center text-5xl font-bold "]').getByText('2048').click();
+  await expect(pm.onBasePage().menuItems).toHaveCount(4);
 
-  const menuItems = page.locator('ul.flex > li')
-
-  await expect(menuItems).toHaveCount(4);
-
-  await expect(menuItems.nth(0)).toContainText(['Standard']);
-  await expect(menuItems.nth(1)).toContainText(['Classic']);
-  await expect(menuItems.nth(2)).toContainText(['Tutorial']);
-  await expect(menuItems.nth(3)).toContainText(['Plus']);
+  await expect(pm.onBasePage().menuItems.nth(0)).toContainText(['Standard']);
+  await expect(pm.onBasePage().menuItems.nth(1)).toContainText(['Classic']);
+  await expect(pm.onBasePage().menuItems.nth(2)).toContainText(['Tutorial']);
+  await expect(pm.onBasePage().menuItems.nth(3)).toContainText(['Plus']);
 
 });
 
@@ -42,19 +39,14 @@ test('Validate the New Game button', async ({ page }) => {
 
   await pm.onBasePage().visitDefaultUrl();
 
-  await expect(page.locator('button[class="white flex items-center justify-center whitespace-nowrap rounded-lg text-base disabled:opacity-50 from-button-gradient-start to-button-gradient-end shadow-button bg-gradient-to-b text-white px-4 h-10 relative"]')).toContainText('New Game');
+  await expect(pm.onMainPage().newGameButton).toBeAttached();
 
-  await page.locator('button[class="white flex items-center justify-center whitespace-nowrap rounded-lg text-base disabled:opacity-50 from-button-gradient-start to-button-gradient-end shadow-button bg-gradient-to-b text-white px-4 h-10 relative"]').click()
+ await pm.onMainPage().newGameButton.click()
 
-  await expect(page.locator('div[class="flex flex-col gap-2"]')).toBeVisible();
-  await expect(page.locator('div[class="flex flex-col gap-2"]')).toContainText('Are you sure you want to start a new game? All progress will be lost.')
+  await expect(pm.onMainPage().newGameModal).toBeVisible();
+  await expect(pm.onMainPage().newGameModal).toContainText(data.NewGameMessages.ProgressGameMessage)
 
-  await page.locator('button[class="white flex items-center justify-center whitespace-nowrap rounded-lg text-base disabled:opacity-50 from-button-gradient-start to-button-gradient-end shadow-button bg-gradient-to-b text-white px-4 h-12 "]').getByText('Start New Game').click()
-
-  await expect(page.locator('div[class="flex flex-col gap-2"]')).toBeVisible();
-  await expect(page.locator('div[class="flex flex-col gap-2"]')).toContainText('New game started!')
-
-  //Adicionar um expect após clicar no botão de start new game
+  await pm.onMainPage().startNewGameButton.getByText('Start New Game').click()
 
 });
 
@@ -65,35 +57,10 @@ test('Validate play the game', async ({ page }) => {
 
   await pm.onBasePage().visitDefaultUrl();
 
-  const moves = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'];
+  await pm.onBasePage().moveTheArrowKeys(30);
 
-  for (let i = 0; i < 30; i++) {
-    for (const move of moves) {
-      await page.keyboard.press(move);
-      await page.waitForTimeout(50);
-    }
-  }
+  await pm.onClassicGamePage().ValidateGameOver(30);
 
-  const gameOverElement = page.locator('div[class="text-4xl font-semibold md:text-5xl"]');
-  const isGameOver = await gameOverElement.isVisible() && await gameOverElement.textContent() === 'Game Over';
-
-  if (isGameOver) {
-
-    await expect(gameOverElement).toContainText('Game Over');
-
-  } else {
-
-    const moves = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'];
-
-    for (let i = 0; i < 50; i++) {
-      for (const move of moves) {
-        await page.keyboard.press(move);
-        await page.waitForTimeout(50);
-      }
-    }
-
-    await expect(gameOverElement).toContainText('Game Over');
-  }
 });
 
 test('Validate go to the Plus Game', async ({ page }) => {
@@ -102,17 +69,10 @@ test('Validate go to the Plus Game', async ({ page }) => {
  
   await pm.onBasePage().visitDefaultUrl();
 
-  await page.locator('h1[class="flex items-center justify-center text-5xl font-bold "]').getByText('2048').click();
+  await pm.onBasePage().chooseItemFromMenu(4, 'Plus');
 
-  const menuItems = page.locator('ul.flex > li')
+  await expect(page).toHaveURL(urls.plus_page);
 
-  await expect(menuItems).toHaveCount(4);
-  await expect(menuItems.nth(3)).toContainText(['Plus']);
-
-  await menuItems.nth(3).click();
-
-  await expect(page).toHaveURL(/plus/);
-
-  await expect(page.locator('span[class="text-64-red inline-flex items-baseline gap-[2px] font-medium"]')).toContainText('2048 Plus');
+  await expect(pm.onMainPage().plusGameModal).toContainText(data.PlusGameMessages.PlusGameStartedMessage);
 });
 

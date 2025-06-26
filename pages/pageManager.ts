@@ -2,6 +2,7 @@ import { Page } from "playwright"
 import { basePage } from "./basePage"
 import { TutorialPage } from "./tutorialPage"
 import { ClassicGamePage } from "./classicGamePage";
+import { MainPage } from "./mainPage";
 
 export class PageManager {
 
@@ -9,12 +10,14 @@ export class PageManager {
     private basePage: basePage;
     private tutorialPage: TutorialPage;
     private classicGamePage: ClassicGamePage;
+    private mainPage: MainPage;
 
     constructor(page: Page) {
         this.page = page;
         this.basePage = new basePage(page);
         this.tutorialPage = new TutorialPage(page);
         this.classicGamePage = new ClassicGamePage(page);
+        this.mainPage = new MainPage(page);
     }
 
     onBasePage(): basePage {
@@ -27,6 +30,10 @@ export class PageManager {
 
     onClassicGamePage(): ClassicGamePage {
         return this.classicGamePage;
+    }
+
+    onMainPage(): MainPage {
+        return this.mainPage;
     }
 }
 

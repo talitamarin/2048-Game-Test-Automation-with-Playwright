@@ -33,6 +33,7 @@ export class basePage {
   }
 
   async chooseItemFromMenu(index: number, MenuItem: MenuType ) {
+
     await this.menu.click();
     
     const menuItem = this.menuItems.nth(index);
