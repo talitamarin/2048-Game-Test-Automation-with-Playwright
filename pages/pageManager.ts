@@ -1,25 +1,39 @@
 import { Page } from "playwright"
 import { basePage } from "./basePage"
-import { MainTestPage } from "./mainTestPage"
+import { TutorialPage } from "./tutorialPage"
+import { ClassicGamePage } from "./classicGamePage";
+import { MainPage } from "./mainPage";
 
 export class PageManager {
 
     private page: Page;
     private basePage: basePage;
-    private mainTestPage: MainTestPage;
+    private tutorialPage: TutorialPage;
+    private classicGamePage: ClassicGamePage;
+    private mainPage: MainPage;
 
     constructor(page: Page) {
         this.page = page;
         this.basePage = new basePage(page);
-        this.mainTestPage = new MainTestPage(page);
+        this.tutorialPage = new TutorialPage(page);
+        this.classicGamePage = new ClassicGamePage(page);
+        this.mainPage = new MainPage(page);
     }
 
     onBasePage(): basePage {
         return this.basePage;
     }
 
-    onMainTestPage(): MainTestPage {
-        return this.mainTestPage;
+    onTutorialPage(): TutorialPage {
+        return this.tutorialPage;
+    }
+
+    onClassicGamePage(): ClassicGamePage {
+        return this.classicGamePage;
+    }
+
+    onMainPage(): MainPage {
+        return this.mainPage;
     }
 }
 
